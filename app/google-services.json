@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1081338695985",
+    "firebase_url": "https://groupmessenger-ab3b3.firebaseio.com",
+    "project_id": "groupmessenger-ab3b3",
+    "storage_bucket": "groupmessenger-ab3b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081338695985:android:ee8accc2d8abc9f9",
+        "android_client_info": {
+          "package_name": "com.chat.pcon.groupmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081338695985-mm3f1m0fmaq2c57krn96ccd97jt8jf9f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chat.pcon.groupmessenger",
+            "certificate_hash": "0f16dfee06f38c435da3ea58329d9cc5b3883b15"
+          }
+        },
+        {
+          "client_id": "1081338695985-j1rr42lltuvpnm063bi7mig04bgae54b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAZAKJjls1mHiw-Z8hkSVOMZfNse-qGVM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081338695985-j1rr42lltuvpnm063bi7mig04bgae54b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

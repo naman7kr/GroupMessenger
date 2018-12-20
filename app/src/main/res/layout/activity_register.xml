@@ -31,7 +31,6 @@
         android:layout_margin="5dp"
         android:padding="5dp"
         >
-
         <android.support.design.widget.TextInputEditText
             android:id="@+id/register_email"
             android:layout_width="match_parent"
