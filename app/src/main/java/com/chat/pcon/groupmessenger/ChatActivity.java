@@ -96,7 +96,6 @@ public class ChatActivity extends AppCompatActivity {
                             uInfo.name,
                             Timestamp.now(),
                             false,
-
                             uInfo.color
                     );
                     infos.add(0,mInfo);

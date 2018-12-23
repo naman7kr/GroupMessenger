@@ -7,7 +7,7 @@ public class MessageInfo {
     public String msg;
     public String uid;
     public String name;
-    Timestamp timestamp;
+    public Timestamp timestamp;
     public String color;
     public boolean isReceived=true; //if false then sent msg and true then received msg
     public MessageInfo(){}
