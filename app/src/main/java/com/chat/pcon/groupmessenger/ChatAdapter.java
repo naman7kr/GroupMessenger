@@ -3,25 +3,23 @@ package com.chat.pcon.groupmessenger;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.google.firebase.Timestamp;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<MyViewHolder> {
     List<MessageInfo> infos;
     Context context;
-    int lastAnimatedPosition = -1;
+
     public ChatAdapter(List<MessageInfo> infos){
         this.infos = infos;
     }
@@ -45,7 +43,9 @@ public class ChatAdapter extends RecyclerView.Adapter<MyViewHolder> {
         myViewHolder.name.setText(info.name);
         myViewHolder.msgBody.setText(info.msg);
 
-        myViewHolder.msgHead.setText(String.valueOf(info.name.charAt(0)));
+        myViewHolder.timestamp.setText(getDateTime(info.timestamp));
+
+        myViewHolder.msgHead.setText(String.valueOf(info.name.charAt(0)).toUpperCase());
         GradientDrawable drawable = (GradientDrawable) myViewHolder.msgHead.getBackground();
         drawable.setColor(Color.parseColor(info.color));
 
@@ -60,7 +60,16 @@ public class ChatAdapter extends RecyclerView.Adapter<MyViewHolder> {
         });
 
     }
+    String getDateTime(Timestamp timestamp){
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+
+        String date = dateFormat.format(timestamp.toDate());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh-mm-ss");
+        String time = timeFormat.format(timestamp.toDate().getTime());
+        String datetime = date+"  "+time;
+        return datetime;
+    }
     @Override
     public void onViewAttachedToWindow(@NonNull MyViewHolder holder) {
         super.onViewAttachedToWindow(holder);
@@ -74,7 +83,7 @@ public class ChatAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if(infos.get(position).type == false)
+        if(infos.get(position).isReceived == false)
             return 0;
         else
             return 1;
@@ -83,11 +92,12 @@ public class ChatAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
 }
 class MyViewHolder extends RecyclerView.ViewHolder{
-    TextView msgHead,name,msgBody;
+    TextView msgHead,name,msgBody,timestamp;
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
         msgHead = itemView.findViewById(R.id.msg_head);
         msgBody = itemView.findViewById(R.id.msg_body);
         name = itemView.findViewById(R.id.msg_name);
+        timestamp = itemView.findViewById(R.id.msg_timestamp);
     }
 }

@@ -1,15 +1,4 @@
 <resources>
     <string name="app_name">GroupMessenger</string>
-    <string-array name="colors">
-        <item>#D50000</item>
-        <item>#283593</item>
-        <item>#03A9F4</item>
-        <item>#4527A0</item>
-        <item>#388E3C</item>
-        <item>#F57F17</item>
-        <item>#FFFF00</item>
-        <item>#FF3D00</item>
-        <item>#9E9E9E</item>
-        <item>#455A64</item>
-    </string-array>
+
 </resources>

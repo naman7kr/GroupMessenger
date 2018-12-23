@@ -96,6 +96,7 @@ public class ChatActivity extends AppCompatActivity {
                             uInfo.name,
                             Timestamp.now(),
                             false,
+
                             uInfo.color
                     );
                     infos.add(0,mInfo);
@@ -138,9 +139,9 @@ public class ChatActivity extends AppCompatActivity {
                      for(DocumentChange change:changes){
                          MessageInfo mInfo = change.getDocument().toObject(MessageInfo.class);
                          if(mInfo.uid.compareTo(mAuth.getUid())==0){
-                             mInfo.type = false;
+                             mInfo.isReceived = false;
                          }else{
-                             mInfo.type = true;
+                             mInfo.isReceived = true;
                          }
                          infos.add(mInfo);
                          mAdapter.notifyDataSetChanged();
@@ -152,7 +153,7 @@ public class ChatActivity extends AppCompatActivity {
                             MessageInfo mInfo = dc.getDocument().toObject(MessageInfo.class);
 
                             if(mInfo.uid.compareTo(mAuth.getUid())!=0) {
-                                mInfo.type = true;
+                                mInfo.isReceived = true;
                                 infos.add(0, mInfo);
                                 mAdapter.notifyItemInserted(0);
                                 rView.scrollToPosition(0);

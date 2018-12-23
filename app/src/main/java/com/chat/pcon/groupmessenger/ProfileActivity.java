@@ -1,5 +1,6 @@
 package com.chat.pcon.groupmessenger;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,11 +19,14 @@ public class ProfileActivity extends AppCompatActivity {
     TextView name;
     TextView email;
     FirebaseFirestore firestore;
+    ProgressDialog dialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         init();
+        setDialog();
+        dialog.show();
         supportPostponeEnterTransition();
         getDetails();
     }
@@ -33,6 +37,11 @@ public class ProfileActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+    void setDialog(){
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("...Signing you in");
+        dialog.setCancelable(false);
+    }
     void getDetails(){
         firestore.collection("user").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -42,13 +51,15 @@ public class ProfileActivity extends AppCompatActivity {
                     UserInfo inf0 = task.getResult().toObject(UserInfo.class);
                     name.setText(inf0.name);
                     email.setText(inf0.email);
-
+                    dialog.dismiss();
                 }else{
                     supportStartPostponedEnterTransition();
                     Toast.makeText(ProfileActivity.this,"Unable to load data",Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
             }
         });
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
