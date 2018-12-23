@@ -1,4 +1,4 @@
-package com.chat.pcon.groupmessenger;
+package com.chat.pcon.groupmessenger.Models;
 
 public class UserInfo {
     public String name;

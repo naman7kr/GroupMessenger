@@ -1,4 +1,4 @@
-package com.chat.pcon.groupmessenger;
+package com.chat.pcon.groupmessenger.Activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.chat.pcon.groupmessenger.R;
+import com.chat.pcon.groupmessenger.Models.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -1,4 +1,4 @@
-package com.chat.pcon.groupmessenger;
+package com.chat.pcon.groupmessenger.Others;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,9 +7,11 @@ import android.support.v7.widget.SimpleItemAnimator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.chat.pcon.groupmessenger.R;
+
 public class MyItemAnimator extends SimpleItemAnimator {
     Context context;
-    MyItemAnimator(Context context){
+    public MyItemAnimator(Context context){
         this.context = context;
     }
     @Override

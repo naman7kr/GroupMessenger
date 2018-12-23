@@ -1,4 +1,4 @@
-package com.chat.pcon.groupmessenger;
+package com.chat.pcon.groupmessenger.Others;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.chat.pcon.groupmessenger.Activities.ProfileActivity;
+import com.chat.pcon.groupmessenger.Models.MessageInfo;
+import com.chat.pcon.groupmessenger.R;
 import com.google.firebase.Timestamp;
 
 import java.text.SimpleDateFormat;
