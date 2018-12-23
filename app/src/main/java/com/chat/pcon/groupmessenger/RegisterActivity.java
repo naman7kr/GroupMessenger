@@ -1,5 +1,7 @@
 package com.chat.pcon.groupmessenger;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,15 +15,24 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class RegisterActivity extends AppCompatActivity {
     Button register;
     TextInputEditText name,email,password;
     FirebaseAuth mAuth;
+    FirebaseFirestore mFirestore;
+
 
     private static final String TAG = "RegisterActivity";
     @Override
@@ -38,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.register_email);
         password = findViewById(R.id.register_password);
         register = findViewById(R.id.register_btn);
+        mFirestore = FirebaseFirestore.getInstance();
     }
     void onRegister(){
         register.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +81,32 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if(user!=null){
-
+            //set User details in firestore database
+            UserInfo info = new UserInfo(
+                    name.getText().toString(),
+                    user.getEmail(),
+                    getRandomColor(),
+                    user.getUid()
+            );
+            mFirestore.collection("user").document(mAuth.getUid()).set(info).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(TAG,"Data Saved Successfully");
+                    mAuth.signOut();
+                    finish();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG, "Data was not saved Successfully");
+                }
+            });
         }
     }
-
+    String getRandomColor(){
+        String [] colors = getResources().getStringArray(R.array.colors);
+        return colors[new Random().nextInt(colors.length)];
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -83,4 +117,5 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
